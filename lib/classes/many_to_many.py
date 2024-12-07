@@ -5,7 +5,7 @@ class Article:
     """
     all = []  # Store all articles globally
 
-    def __init__(self, author, magazine, title):
+    def __init__(self, author:str, magazine:str, title:str):
         """
         Initialize an Article instance.
         :param author: Author instance
@@ -23,6 +23,9 @@ class Article:
         self.magazine = magazine
         self.title = title
         Article.all.append(self)  # Register the article globally
+    
+    def __str__(self):
+        return f"'{self.title}' by {self.author}"  # Return a readable string for the article
 
 
 class Author:
@@ -30,7 +33,7 @@ class Author:
     Represents an Author who writes articles for magazines.
     Tracks the relationship between the Author and their articles or magazines.
     """
-    def __init__(self, name):
+    def __init__(self, name:str):
         """
         Initialize an Author instance.
         :param name: str, name of the author
@@ -38,6 +41,9 @@ class Author:
         if not isinstance(name, str):
             raise ValueError("Name must be a string.")
         self._name = name
+
+    def __str__(self):
+        return self._name  # Return the author's name when the instance is printed
 
     @property
     def name(self):
@@ -96,6 +102,10 @@ class Magazine:
         self._name = name
         self._category = category
         Magazine.all_magazines.append(self)
+
+    def __str__(self):
+        return f"{self.name} ({self.category})"  # Return the magazine name and category
+    
 
     @property
     def name(self):
@@ -160,33 +170,39 @@ class Magazine:
         for article in Article.all:
             magazine_counts[article.magazine] += 1
         return max(magazine_counts, key=magazine_counts.get)
+    
+
 
 
 # Example Usage
+author1 = Author("Melki")  # Create an author named Melki
+author2 = Author("Alare")  # Create another author named Alare
 
-# Create authors
-author1 = Author("Melki")
-author2 = Author("Alare")
-
-# Create magazines
+# Create magazines with name and category
 magazine1 = Magazine("Tech Today", "Technology")
 magazine2 = Magazine("Health & Wellness", "Health")
 
-# Add articles
+# Add articles authored by Melki and Alare to respective magazines
 article1 = author1.add_article(magazine1, "The Future of AI")
 article2 = author1.add_article(magazine1, "Exploring Robotics")
 article3 = author2.add_article(magazine2, "Healthy Living Tips")
 
-# Author methods
-print(author1.articles())  # List of articles by Melki
-print(author1.magazines())  # List of magazines Melki has contributed to
-print(author1.topic_areas())  # List of unique categories Melki has written about
+# Print all articles by Melki (as strings for readability)
+print(list(map(str, author1.articles())))  
+# Output: ["'The Future of AI' by Melki", "'Exploring Robotics' by Melki"]
 
-# Magazine methods
-print(magazine1.articles())  # List of articles in Tech Today
-print(magazine1.contributors())  # List of contributors to Tech Today
-print(magazine1.article_titles())  # Titles of articles in Tech Today
-print(magazine1.contributing_authors())  # Authors with more than two contributions
+# Print all magazines Melki has contributed to (as strings for readability)
+print(list(map(str, author1.magazines())))  
+# Output: ['Tech Today (Technology)']
 
-# Class method
-print(Magazine.top_publisher())  # Magazine with the most articles
+# Print topic areas (unique categories) Melki has written about
+print(author1.topic_areas())  
+# Output: ['Technology']
+
+# Print all articles in Tech Today (as strings for readability)
+print(list(map(str, magazine1.articles())))  
+# Output: ["'The Future of AI' by Melki", "'Exploring Robotics' by Melki"]
+
+# Print all contributors (authors) to Tech Today (as strings for readability)
+print(list(map(str, magazine1.contributors())))  
+# Output: ['Melki']
