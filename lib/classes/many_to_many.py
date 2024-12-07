@@ -25,6 +25,7 @@ class Article:
         Article.all.append(self)  # Register the article globally
     
     def __str__(self):
+         # Returns a formatted string showing the article's title and its author.
         return f"'{self.title}' by {self.author}"  # Return a readable string for the article
 
 
@@ -43,7 +44,8 @@ class Author:
         self._name = name
 
     def __str__(self):
-        return self._name  # Return the author's name when the instance is printed
+        # Returns the author's name when the object is printed or converted to a string.
+        return self._name   # Return a readable string for the author
 
     @property
     def name(self):
@@ -104,7 +106,8 @@ class Magazine:
         Magazine.all_magazines.append(self)
 
     def __str__(self):
-        return f"{self.name} ({self.category})"  # Return the magazine name and category
+         # Returns a formatted string showing the magazine's name and category.
+        return f"{self.name} ({self.category})"  
     
 
     @property
