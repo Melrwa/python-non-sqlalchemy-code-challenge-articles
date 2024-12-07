@@ -165,8 +165,8 @@ class Magazine:
 # Example Usage
 
 # Create authors
-author1 = Author("Alice")
-author2 = Author("Bob")
+author1 = Author("Melki")
+author2 = Author("Alare")
 
 # Create magazines
 magazine1 = Magazine("Tech Today", "Technology")
@@ -178,9 +178,9 @@ article2 = author1.add_article(magazine1, "Exploring Robotics")
 article3 = author2.add_article(magazine2, "Healthy Living Tips")
 
 # Author methods
-print(author1.articles())  # List of articles by Alice
-print(author1.magazines())  # List of magazines Alice has contributed to
-print(author1.topic_areas())  # List of unique categories Alice has written about
+print(author1.articles())  # List of articles by Melki
+print(author1.magazines())  # List of magazines Melki has contributed to
+print(author1.topic_areas())  # List of unique categories Melki has written about
 
 # Magazine methods
 print(magazine1.articles())  # List of articles in Tech Today
