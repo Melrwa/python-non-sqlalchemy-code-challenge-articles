@@ -39,7 +39,7 @@ class Author:
 
     def magazines(self):
         # Returns a unique list of magazines this author has contributed to
-        return list(set(article.magazine for article in self.articles()))  # Fix typo: `magazines` -> `article.magazine`
+        return list(set(article.magazine for article in self.articles()))  
 
     def add_article(self, magazine, title):
         # Creates and associates a new article to the author
